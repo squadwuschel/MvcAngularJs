@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Codehighlight";
+}
+
+
+
+<div class="row">
+    <div class="col-md-6">
+        <pre><code class="prettyprint">
+ public static void RegisterRoutes(RouteCollection routes)
+ {
+        routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+           routes.MapRoute(
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new {
+                    controller = "Home", 
+                    action = "Index", 
+                    id = UrlParameter.Optional }
+            );
+ }
+    </code></pre>
+    </div>
+    <div class="col-md-6">
+        <pre>
+        <xmp class="prettyprint">
+ <div class="panel panel-default">
+        <div class="panel-heading">
+        <h3 class="panel-title">Panel title</h3>
+    </div>
+        <div class="panel-body">
+       Panel content
+    </div>
+ </div>
+</xmp>
+</pre>
+
+    </div>
+</div>
+
+@section scripts
+{
+    @* Google Pretify nutzen *@
+    <link rel="stylesheet" href="~/Scripts/google-code-prettify/prettify.css">
+    <script src="~/Scripts/google-code-prettify/run_prettify.js"></script>
+}

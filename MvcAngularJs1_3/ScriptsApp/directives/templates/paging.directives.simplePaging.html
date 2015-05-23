@@ -1,0 +1,35 @@
+﻿<ul class="pagination" ng-if="searchModel.PagingParameter.TotalPages > 0">
+    <li ng-class="{'disabled': searchModel.PagingParameter.CurrentPage === 1}">
+        <a href="" title="Vorherige Seite" ng-click="Fct.firstPage()">
+            <strong>
+                &laquo;</strong>
+        </a>
+    </li>
+    <li ng-class="{'disabled': searchModel.PagingParameter.CurrentPage === 1}">
+        <a href="" ng-click="Fct.prevPage()">
+            <strong>
+                &lsaquo;</strong>
+        </a>
+    </li>
+    <li class="active">
+        <a href="" style="cursor: default">
+            <strong>
+                <span title="Aktuelle Seite" ng-bind="searchModel.PagingParameter.CurrentPage">
+                </span>
+                /&nbsp;<span title="Maximale Seiten" ng-bind="searchModel.PagingParameter.TotalPages"></span>
+            </strong>
+        </a>
+    </li>
+    <li ng-class="{'disabled': searchModel.PagingParameter.CurrentPage === searchModel.PagingParameter.TotalPages}">
+        <a href="" ng-click="Fct.nextPage()">
+            <strong>
+                &rsaquo;</strong>
+        </a>
+    </li>
+    <li ng-class="{'disabled': searchModel.PagingParameter.CurrentPage === searchModel.PagingParameter.TotalPages}">
+        <a href="" title="Nächste Seite" ng-click="Fct.lastPage()">
+            <strong>
+                &raquo;</strong>
+        </a>
+    </li>
+</ul>

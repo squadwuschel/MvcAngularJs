@@ -1,0 +1,103 @@
+﻿@{
+    ViewBag.Title = "Alerts";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body ng-app="initAlertsView" ng-controller="alertCtrl">
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Brand</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active">@Html.ActionLink("AngularJs Beispiele", "Index", "Home")</li>
+                </ul>
+
+                <div message-window></div>
+
+                @*<ul class="nav navbar-nav navbar-right" ng-if="SxpMessage.hasMessages()">
+                        <li class="dropdown" ng-class="{'open': SxpMessage.alertOpen}">
+                            <a href="#" class="" ng-click="SxpMessage.toggleAlertOpen()"><i class="fa fa-info-circle fa-lg" ng-class="{'text-primary': SxpMessage.hasErrorMessage()}"></i></a>
+                            <ul class="dropdown-menu alert-menue">
+                                <li>
+                                    <table class="table table-condensed table-hover">
+                                        <tr ng-repeat="row in SxpMessage.messages" ng-class="row.typ">
+                                            <td ng-bind="row.Message"></td>
+                                            <td style="width: 20px;" ng-click="SxpMessage.closeMessage(row.Message)">
+                                                <i class="fa fa-trash-o linkCursor"></i>
+                                            </td>
+                                        </tr>
+                                        <tr class="linkCursor" ng-if="SxpMessage.hasErrorMessage()" ng-click="SxpMessage.deleteAllMessages()">
+                                            <td class="text-right"><small>Alle Einträge löschen</small></td>
+                                            <td style="width: 20px;"><i class="fa fa-trash-o linkCursor"></i></td>
+                                        </tr>
+                                    </table>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>*@
+            </div><!-- /.navbar-collapse -->
+        </div>
+    </div><!-- /.container-fluid -->
+
+
+    <div class="container" id="mainContainer">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="jumbotron">
+                    <h1>ACHTUNG EIGENES LAYOUT</h1>
+                    <p>
+                        Benötigt eigenes Layout da wir hier die NG App Direktive auf oberster Ebene benötigen
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <a href="" ng-click="addAllert()" class="btn btn-danger btn-block">Alarm hinzufügen</a>
+            </div>
+            <div class="col-md-3">
+                <a href="" ng-click="addSuccess()" class="btn btn-success btn-block">Erfolgsmeldung hinzufügen</a>
+            </div>
+        </div>
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+
+    <script type="text/javascript" src="~/ScriptsAngular/modules/message.config.js"></script>
+    <script type="text/javascript" src="~/ScriptsAngular/modules/message.directives.js"></script>
+    <script type="text/javascript" src="~/ScriptsAngular/view/Home/initAlertsView.js"></script>
+    <script type="text/javascript" src="~/ScriptsAngular/srv/tableSrv.js"></script>
+    <script type="text/javascript" src="~/ScriptsAngular/ctrl/alertCtrl.js"></script>
+
+
+</body>
+</html>

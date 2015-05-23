@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Verschachtelte Personen Controller";
+}
+
+<div class=" row">
+    <div class="col-md-12">
+        <h2>Verschachtelte Personen Controller</h2>
+        <hr />
+    </div>
+</div>
+
+<div ng-app="app.persons">
+    <div class="row" ng-controller="person01Ctrl">
+        <div class="col-md-12">
+            <h3>Person 01 anzeigen mit Controller unter Verwendung von ng-app</h3>
+            <p>
+                <br />
+                Hallo {{ModelData.person.name}}, {{ModelData.person.vorname}}!
+                <br />
+                Ich bin <strong ng-bind="ModelData.person.alter"></strong> Jahre alt.
+                <br />
+                <button type="button" ng-click="Fct.alertData()" class="btn btn-default">Daten anzeigen!</button>
+            </p>
+        </div>
+
+        <div class="col-md-12" ng-controller="person02Ctrl">
+            <h3>Person02 anzeigen als untergeordneter Controller von Person01</h3>
+            <p>
+                <br />
+                Hallo {{ModelData.person.name}}, {{ModelData.person.vorname}}!
+                <br />
+                Ich bin <strong ng-bind="ModelData.person.alter"></strong> Jahre alt.
+                <br />
+                <button type="button" ng-click="Fct.alertData()" class="btn btn-default">Daten anzeigen!</button>
+            </p>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        function person01Ctrl($log, $scope) {
+            $log.log("person01Ctrl initialized");
+
+            $scope.ModelData = {};
+            $scope.ModelData.person = {
+                name: "Thomas",
+                vorname: "Müller",
+                alter: 21
+            };
+
+            $scope.Fct = {};
+            $scope.Fct.alertData = function () {
+                alert('Name: ' + $scope.ModelData.person.vorname + ', ' + $scope.ModelData.person.name);
+            }
+        }
+
+        angular.module("app.persons", [])
+            //Die Controller Funktion "auslagern"
+            .controller("person01Ctrl", person01Ctrl)
+            //Einen weiteren Controller direkt Definiert.
+            .controller("person02Ctrl", function ($log, $scope) {
+                $log.log("person02Ctrl initialized");
+
+                $scope.ModelData = {};
+                $scope.ModelData.person = {
+                    name: "Kerstin",
+                    vorname: "Herdbrandt",
+                    alter: 66
+                };
+
+                //Keine Klick Funktion, hier wird diese in einer der Übergeordneten Controller gesucht!
+            });
+    </script>
+}

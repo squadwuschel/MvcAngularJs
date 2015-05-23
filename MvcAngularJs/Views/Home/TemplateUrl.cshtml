@@ -1,0 +1,36 @@
+﻿@using MvcAngularJs.Helpers
+
+@{
+    ViewBag.Title = "TemplateUrl";
+}
+
+<div ng-app="app.templates" ng-controller="templateCtrl">
+
+    <div class="row">
+        <div class=" col-md-8">
+            <div panel-with-header panel-title="'Das ist der Titel'">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <strong>Panel Body Transclusion</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section scripts
+{
+    <script>
+        var siteRoot = '@SiteRoot.GetSiteRoot()'
+    </script>
+
+    <script type="text/javascript" src="~/ScriptsAngular/directives/panel.directives.js"></script>
+<script type="text/javascript">
+    var app = angular.module("app.templates", ["panel.directives"]);
+    app.controller("templateCtrl", function () {
+    });
+</script>
+}

@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "DirectiveTests";
+    Layout = null;
+}
+
+<div ng-controller="DirectiveTestsCtrl as ctrl">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>DirectiveTests</h2>
+        </div>
+        <div class="col-md-12">
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            Lokale Werte
+        </div>
+        <div class="col-md-3">
+            <input type="text" ng-model="ctrl.name" />
+        </div>
+        <div class="col-md-3">
+            <input type="text" ng-model="ctrl.Person.Alter" />
+        </div>
+        <div class="col-md-3">
+            <input type="text" ng-model="ctrl.Person.Name" />
+        </div>
+    </div>
+    <div class="row">
+        <br />
+        <div test-directive test-name="ctrl.name" test-person="ctrl.Person"></div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            IsNumber Directive
+        </div>
+        <div class="col-md-3">
+            <input type="text" sxp-is-number ng-model="ctrl.nummer" />
+        </div>
+
+    </div>
+</div>

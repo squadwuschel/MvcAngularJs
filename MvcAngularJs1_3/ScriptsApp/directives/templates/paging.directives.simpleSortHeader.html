@@ -1,0 +1,10 @@
+﻿<span class="linkCursor" ng-click="Fct.SortHeader()">
+    <span ng-bind="headerName">
+    </span>
+    <span ng-show="sortPropertyName === searchModel.OrderByColumn">
+    &nbsp;
+    </span>
+    <i class="fa" ng-class="{'fa-caret-down': searchModel.OrderDirection === 1, 'fa-caret-up': searchModel.OrderDirection === 0}"
+        ng-if="sortPropertyName === searchModel.OrderByColumn">
+    </i>
+</span>

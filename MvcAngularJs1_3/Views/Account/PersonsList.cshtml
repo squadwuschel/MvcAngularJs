@@ -1,0 +1,32 @@
+﻿@{
+    Layout = null;
+}
+
+<div ng-controller="PersonListCtrl as ctrl">
+    <h2>PersonsList</h2>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Alter</th>
+                        <th>Id</th>
+                        <th>Set Rights</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="row in ctrl.persons">
+                        <td ng-bind="::row.Name"></td>
+                        <td ng-bind="::row.Alter"></td>
+                        <td ng-bind="::row.Id"></td>
+                        <td>
+                            <a class="btn btn-default btn-xs"
+                               ui-sref="Account.ManageRights({ personId: row.Id, Name: row.Name })">Rechte</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

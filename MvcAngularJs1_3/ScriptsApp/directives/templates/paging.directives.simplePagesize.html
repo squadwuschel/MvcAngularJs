@@ -1,0 +1,4 @@
+﻿<select ng-if="searchModel.PagingParameter.TotalPages > 0" class="form-control" name="Searchtype"
+    ng-model="searchModel.PagingParameter.PageSize" ng-change="Fct.SelectionChanged()"
+    ng-options="item as item for item in stepsizeArray" style="padding-right: 0;">
+</select>

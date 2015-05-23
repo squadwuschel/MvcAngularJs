@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Example0301";
+}
+
+<div class=" row">
+    <div class="col-md-12">
+        <h2>Example0301 - Factory (Singleton)</h2>
+        <hr />
+    </div>
+</div>
+
+<div ng-app="app.angular">
+    <div class="row" ng-controller="mainCtrl">
+        <div class="col-md-12">
+            <h3>Hallo ich bin {{person.vorname}}, {{person.nachname}}</h3>
+            <p ng-bind="'und ich bin ' + person.age + ' alt.'"></p>
+            <p><input type="text" ng-model="person.vorname" /></p>
+        </div>
+    </div>
+    <div class="row" ng-controller="secondCtrl as myCtrl">
+        <div class="col-md-12">
+            <h3>Hallo ich bin {{myCtrl.person.vorname}}, {{myCtrl.person.nachname}}</h3>
+            <p ng-bind="'und ich bin ' + myCtrl.person.age + ' alt.'"></p>
+            <p><input type="text" ng-model="myCtrl.person.vorname" /></p>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        angular.module("app.angular", [])
+       .factory("personFact", function () {
+           return {
+               vorname: "Max",
+               nachname: "Mustermann",
+               age: 21
+           }
+       }).controller("mainCtrl", function ($log, $scope, personFact) {
+           $scope.person = personFact;
+       }).controller("secondCtrl", function ($log, personFact) {
+           this.person = personFact;
+       });
+
+    </script>
+}

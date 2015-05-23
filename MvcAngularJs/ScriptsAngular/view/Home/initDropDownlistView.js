@@ -1,0 +1,1 @@
+﻿var appDropDwonlistAngular = angular.module("app.DropDownlistView", ["app.dropDownlistCtrl", "app.dropDownlistSrv"]);

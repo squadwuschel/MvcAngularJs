@@ -1,0 +1,138 @@
+﻿@{
+    ViewBag.Title = "Validation";
+}
+
+<div ng-app="app.ValidationView" ng-controller="validationCtrl">
+
+    <div class="row">
+        <div class="col-md-5">
+            <h2>AngularJs Validation Beispiele</h2>
+            <a href="http://scotch.io/tutorials/javascript/angularjs-form-validation" target="_blank">Validation Quelle</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-horizontal" name="frm" ng-submit="submitForm(isValid)" novalidate role="form">
+                <div class="form-group">
+                    <label for="inputLevel" class="col-sm-4 control-label">Benutzerlevel (required)</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" name="inputLevel" ng-model="DataModel.BenutzerLevel" ng-options="item as item.Text for item in Levels">
+                            <option value="" ng-hide="DataModel.BenutzerLevel !== -1">Bitte wählen</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <label class=""></label>
+                    </div>
+                </div>
+             <div class="form-group">
+                    <label for="inputEmail" class="col-sm-4 control-label">Email (required)</label>
+                    <div class="col-sm-4">
+                        <input type="email" ng-model="DataModel.Email" sq-email-exists class="form-control" required name="inputEmail" placeholder="Email">
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="" ng-show="frm.inputEmail.$error.required && (!frm.inputEmail.$pristine || submitted)">Email Adresse required</label>
+                        <label class="" ng-show="frm.inputEmail.$error.emailexists && (!frm.inputEmail.$pristine)">Email Adresse wird bereits verwendet</label>
+                    </div>
+                </div>
+           <div class="form-group" ng-class="{ 'has-error' : frm.inputVorname.$invalid && !frm.inputVorname.$pristine && submitted }">
+        <label for="inputVorname" class="col-sm-4 control-label">Vorname (required und maximale Länge zwischen 3 und 10)</label>
+        <div class="col-sm-4">
+            <input type="text" ng-model="DataModel.Vorname" class="form-control" ng-minlength="3" ng-maxlength="10" required name="inputVorname" placeholder="Vorname">
+        </div>
+        <div class="col-sm-4">
+            <label class="">
+                <label class="" ng-show="frm.inputVorname.$error.required && (!frm.inputVorname.$pristine || submitted)">Vorname required</label>
+                <label class="" ng-show="frm.inputVorname.$error.minlength && (!frm.inputVorname.$pristine || submitted)">Vorname muss mindestens 3 Zeichen lang sein</label>
+                @*<label class="" ng-show="frm.inputVorname.$error.maxlength && !frm.inputVorname.$pristine || submitted">Vorname darf maximal 10 Zeichen lang sein</label>*@
+            </label>
+        </div>
+    </div>
+  <div class="form-group">
+        <label for="inputAlter" class="col-sm-4 control-label">Alter (größer 3 kleiner 10)</label>
+        <div class="col-sm-4">
+            <input type="text" ng-model="DataModel.Alter" is-single-number class="form-control" name="inputAlter" placeholder="Alter">
+        </div>
+        <div class="col-sm-4">
+            <label class=""></label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputGehalt" class="col-sm-4 control-label">Gehalt (required und größer 5 kleiner 10,5)</label>
+        <div class="col-sm-4">
+            <input type="text" ng-model="DataModel.Gehalt" is-number class="form-control" name="inputGehalt" placeholder="Gehalt">
+        </div>
+        <div class="col-sm-4">
+            <label class=""></label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputStartDatum" class="col-sm-4 control-label">Startdatum</label>
+        <div class="col-sm-4">
+            <input type="text" ng-model="DataModel.Startdatum" datetime-input-two-way-filter class="form-control" name="inputStartDatum" placeholder="Startdatum">
+        </div>
+        <div class="col-sm-4">
+            <label class="">{{DataModel.Startdatum | date:'shortDate'}}</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputEnddatum" class="col-sm-4 control-label">Enddatum</label>
+        <div class="col-sm-4">
+            <input type="text" ng-model="DataModel.Enddatum" datetime-input-two-way-filter class="form-control" name="inputEnddatum" placeholder="Endedatum">
+        </div>
+        <div class="col-sm-4">
+            <label class="">{{DataModel.Enddatum | date:'shortDate'}}</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword3" class="col-sm-4 control-label">Passwort</label>
+        <div class="col-sm-4">
+            <input type="password" ng-model="DataModel.Passwort" class="form-control" name="inputPassword3" placeholder="Password">
+        </div>
+        <div class="col-sm-4">
+            <label class=""></label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword4" class="col-sm-4 control-label">Passwort wiederholen</label>
+        <div class="col-sm-4">
+            <input type="password" ng-model="DataModel.PasswortCheck" class="form-control" sq-passwords-equal="inputPassword3" sq-frm-name="frm" name="inputPassword4" placeholder="Password wiederholen">
+        </div>
+        <div class="col-sm-4">
+            <label class="" ng-show="frm.inputPassword4.$error.passwordsequal">Passwörter müssen übereinstimmen</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+                <label>
+                    <input ng-model="DataModel.RememberLogin" type="checkbox"> Remember me
+                </label>
+            </div>
+        </div>
+    </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        @*<button type="submit" class="btn btn-default" ng-disabled="frm.$invalid">Register inkl. Disabled</button>*@
+                        <button type="submit" class="btn btn-default" >Register ohne Disabled</button>
+                        <button type="button" ng-click="resetModelData()" class="btn btn-default">reset</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section scripts
+{
+    <script type="text/javascript" src="~/ScriptsAngular/ctrl/validationCtrl.js"></script>
+    <script type="text/javascript" src="~/ScriptsAngular/srv/homePSrv.js"></script>
+    <script type="text/javascript" src="~/ScriptsAngular/directives/validationDirectives.js"></script>
+    <script type="text/javascript" src="~/ScriptsAngular/directives/numberDirectives.js"></script>
+    <script type="text/javascript" src="~/ScriptsAngular/directives/datetimeDirectives.js"></script>
+    <script type="text/javascript" src="~/ScriptsAngular/view/Home/initValidationView.js"></script>
+}
+
+
+

@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.Title = "Formvalidation";
+}
+
+<div ng-app>
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Formvalidation</h2>
+            <hr />
+        </div>
+    </div>
+
+    <form name="frm" novalidate>
+        <div class="row">
+            <div class="col-md-1 col-md-offset-3 text-center"><strong>Valid</strong></div>
+            <div class="col-md-1  text-center"><strong>Invalid</strong></div>
+            <div class="col-md-1  text-center"><strong>Pristine</strong></div>
+            <div class="col-md-1  text-center"><strong>Dirty</strong></div>
+        </div>
+        <div class="row">
+            <hr/>
+        </div>
+        <div class="row">
+            <div class="col-md-3"><span class="form-control">Formular</span></div>
+            <div class="col-md-1  text-center"><span class="form-control">{{frm.$valid}}</span></div>
+            <div class="col-md-1  text-center"><span class="form-control">{{frm.$invalid}}</span></div>
+            <div class="col-md-1  text-center"><span class="form-control">{{frm.$pristine}}</span></div>
+            <div class="col-md-1  text-center"><span class="form-control">{{frm.$dirty}}</span></div>
+        </div>
+        <div class="row">
+            <hr />
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="input-group">
+                    <span class="input-group-addon">Username</span>
+                    <input type="text" class="form-control" name="username" ng-model="name" required placeholder="Username">
+                </div>
+            </div>
+            <div class="col-md-1  text-center"><span class="form-control">{{frm.username.$valid}}</span></div>
+            <div class="col-md-1  text-center"><span class="form-control">{{frm.username.$invalid}}</span></div>
+            <div class="col-md-1  text-center"><span class="form-control">{{frm.username.$pristine}}</span></div>
+            <div class="col-md-1  text-center"><span class="form-control">{{frm.username.$dirty}}</span></div>
+            <div class="col-md-3  text-center"><span class="form-control">Required</span></div>
+        </div>
+        <div class="row">
+            <hr />
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="input-group">
+                    <span class="input-group-addon">EMail</span>
+                    <input type="email" class="form-control" name="email" ng-model="email" ng-minlength="3" 
+                           ng-maxlength="10" placeholder="EMail">
+                </div>
+            </div>
+            <div class="col-md-1  text-center"><span class="form-control">{{frm.email.$valid}}</span></div>
+            <div class="col-md-1  text-center"><span class="form-control">{{frm.email.$invalid}}</span></div>
+            <div class="col-md-1  text-center"><span class="form-control">{{frm.email.$pristine}}</span></div>
+            <div class="col-md-1  text-center"><span class="form-control">{{frm.email.$dirty}}</span></div>
+            <div class="col-md-3  text-center"><span class="form-control">Min 3 & max 10 & email</span></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <br />
+                <button type="button" ng-click="" class="btn btn-primary btn-block">Absenden</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section scripts
+{
+    <script>
+
+    </script>
+}

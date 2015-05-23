@@ -1,0 +1,103 @@
+﻿@{
+    ViewBag.Title = "Example01";
+}
+
+<div class=" row">
+    <div class="col-md-12">
+        <h2>Example01 - AngularJS Beispiele ohne extra Script Datei</h2>
+        <hr />
+    </div>
+</div>
+
+<div ng-app>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Elemente binden - ng-model</h3>
+            <input type="text" class="form-control" placeholder="Name eingebeben" ng-model="name" />
+            <p>
+                <br />
+                Hallo {{name}}! oder <strong ng-bind="name"></strong> oder
+                <br />
+                <br />
+                <input type="text" class="form-control" placeholder="Name anzeigen!" ng-model="name" />
+            </p>
+        </div>
+        <div class="col-md-12">
+            <h3>Addieren von Zahlen - ng-model</h3>
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <input type="number" class="form-control" placeholder="Zahl 1" ng-model="wert1" />&nbsp;+&nbsp;
+                </div>
+                <div class="form-group">
+                    <input type="number" class="form-control" placeholder="Zahl 2" ng-model="wert2" /> = {{wert1 + wert2}}
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-12">
+            <h3>Formatieren von Zahlen - ng-model/ng-bind</h3>
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <input type="number" class="form-control" placeholder="Zahl" ng-model="format1" />&nbsp;=&nbsp;{{format1 | currency:'EUR '}}
+                </div>
+            </form>
+            <br />
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <input type="number" class="form-control" placeholder="Zahl" ng-model="format2" />
+                    &nbsp;=&nbsp;<label ng-bind="format2 | currency:'EUR '"></label>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-12">
+            <h3>Zusammenführen von Strings - ng-model</h3>
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Vorname" ng-model="vorname" />&nbsp;
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Nachname" ng-model="nachname" /> = {{nachname + ' '  + vorname}}
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-12">
+            <h3>Anzeigen und Ausblenden von Elementen - ng-hide/ng-show</h3>
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <input type="checkbox" class="form-control" ng-model="anzeigen" />
+                </div>
+                <div class="form-group">
+                    Bitte auswählen ob der Wert angezeigt werden soll
+                </div>
+            </form>
+            <br />
+            <div class="form-group">
+                <strong ng-show="anzeigen">Checkbox ist ausgewählt!</strong>
+                <strong ng-show="!anzeigen">Checkbox ist nicht ausgewählt!</strong>
+            </div>
+        </div>
+
+
+        <div class="col-md-12">
+            <h3>Anzeigen von Listen - ng-repeat</h3>
+            <input type="text" class="form-control" placeholder="Anzeige eingeben" ng-model="repeater" ng-init="repeater='qwertzuttzu'" />
+            <br/>
+            <input type="text" class="form-control" placeholder="Listenfilter" ng-model="listfilter"/>&nbsp;
+
+            <ul ng-repeat="letter in repeater.split('') | filter:listfilter track by $index ">
+                <li ng-bind="$index + 1 + '. letter: ' + letter | uppercase"></li>
+            </ul>
+
+        </div>
+        
+        <div class="col-md-12">
+            <h3>Click auswerten - ng-click</h3>
+            <button class="btn btn-primary" ng-click="count = count + 1" ng-init="count=0">
+                Increment
+            </button>
+            count: {{count}}
+        </div>
+    </div>
+</div>

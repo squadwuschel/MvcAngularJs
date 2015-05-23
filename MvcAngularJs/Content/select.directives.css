@@ -1,0 +1,36 @@
+﻿/* Multiselect Dropdown Styles - Start */
+.sq-dropdown .dropdown-multiselect {
+	max-height: 300px; 
+	overflow-y: auto; 
+	overflow-x: hidden;
+	width: 100%;
+}
+
+.sq-dropdown .ddl-icon {
+    display: inline-block;
+    margin-top: 2.5px;
+    position: absolute;
+    right: 15px;
+}
+
+.sq-dropdown.bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]), .bootstrap-select > .btn {
+    width: 100%;
+}
+
+.sq-dropdown.bootstrap-select.btn-group .btn .filter-option {
+    left: 12px;
+    overflow: hidden;
+    position: absolute;
+	text-overflow:ellipsis;
+    right: 25px;
+    text-align: left;
+}
+
+.sq-dropdown.bootstrap-select.btn-group .btn .caret {
+    margin-top: -2px;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    vertical-align: middle;
+}
+/* Multiselect Dropdown Styles - Ende */

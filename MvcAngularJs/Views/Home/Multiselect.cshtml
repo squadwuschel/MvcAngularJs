@@ -1,0 +1,146 @@
+﻿@{
+    ViewBag.Title = "Multiselect";
+}
+
+<div ng-app="app.ddl" ng-controller="ddlCtrl">
+    <form name="frm">
+        <div class="row">
+            <div class="col-md-12"><strong>Multiselect mit AngularUi</strong></div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div required name="multiPersonSelect" sq-multiselect ng-model="multiSelectItems.users" value-changed="Fct.LogChange(multiSelectItems.users)"></div>
+            </div>
+            <div class="col-md-3">
+                <div required name="multiPersonSelect" bars sq-multiselect-input ng-model="multiSelectItems.users" value-changed="Fct.LogChange(multiSelectItems.users)">
+                    HALLO ICH BINS
+                    <a ng-click="item.Selected = !item.Selected" href="">
+                        <span style="margin-right: 30px;" ng-bind="item.Text + ' Transcluded'"></span>
+                        <i ng-show="item.Selected" class="fa fa-check ddl-icon"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <br />
+                <br />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12"><strong>Single Select mit AngularUi und NgModel</strong> {{selectedValue}} </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4" ng-class="{'has-error': frm.personSelect.$error.required}">
+                <div required name="personSelect" sq-multiselect ng-model="singleSelectItems.users"></div>
+                @*<div sq-select name="personSelect" value-changed="Fct.LogChange(selectedValue)" ng-model="selectedValue" list-entries="singleSelectItems.users" required></div>*@
+            </div>
+            <br />
+            <br />
+            <br />
+            Valid: {{frm.$valid}}
+            <br />
+            Dirty: {{frm.$dirty}}
+            <br />
+            Pristine: {{frm.$pristine}}
+        </div>
+
+        <br />
+        <br />
+        <br />
+
+        <div class="row">
+            <div class="col-md-4">
+                <button type="button" class="btn btn-default" ng-click="Fct.submitForm()">Absenden - Validation!</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+
+
+
+@section scripts
+{
+    <script type="text/javascript" src="~/ScriptsAngular/directives/select.directives.js"></script>
+
+    <script>
+        var app = angular.module("app.ddl", ["ui.bootstrap", "select.directives"]);
+
+        app.controller("ddlCtrl", function ($scope, $log) {
+            $scope.multiSelectItems = {
+                users: [
+                    {
+                        Text: "Ray Jones",
+                        Selected: true,
+                        joined: 2012
+                    },
+                    {
+                        Text: "Lana Lane",
+                        Selected: false,
+                        joined: 2001
+                    },
+                    {
+                        Text: "Titus Jonas",
+                        Selected: true,
+                        joined: 1995
+                    },
+                    {
+                        Text: "Serena Wuh",
+                        Selected: true,
+                        joined: 1990
+                    }
+                ]
+            };
+
+
+            $scope.singleSelectItems = {
+                users: [
+                    {
+                        Text: "Ray Jones",
+                        Selected: true,
+                        joined: 2012
+                    },
+                    {
+                        Text: "Lana Lane",
+                        Selected: false,
+                        joined: 2001
+                    },
+                    {
+                        Text: "Titus Jonas",
+                        Selected: true,
+                        joined: 1995
+                    },
+                    {
+                        Text: "Serena Wuh",
+                        Selected: true,
+                        joined: 1990
+                    },{
+                        Text: "John James",
+                        Selected: true,
+                        joined: 1984
+                    }
+                ]
+            };
+
+            //Angeben welcher Eintrag direkt ausgewählt werden soll
+           // $scope.selectedValue = $scope.singleSelectItems.users[1];
+
+
+
+            $scope.Fct = {};
+            $scope.Fct.submitForm = function() {
+                $log.log($scope.frm);
+            }
+
+            $scope.Fct.LogChange = function(entry) {
+                $log.log(entry);
+            }
+
+        });
+
+
+    </script>
+
+}

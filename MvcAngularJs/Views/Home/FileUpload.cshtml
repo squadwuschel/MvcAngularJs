@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = "FileUpload";
+}
+
+<div ng-app="uploadApp" ng-controller="myCtrl">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Datei Upload mit AngularJS</h3>
+        </div>
+        <hr />
+    </div>
+    <div class="row form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">File Upload 1</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="file" file-model="ViewModel.myFile" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" ng-model="ViewModel.Person.Name" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="email" ng-model="ViewModel.Person.Email" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <br />
+        <div class="col-md-2">
+            <button ng-click="uploadFile()" class="btn btn-default">Datei hochladen</button>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        var app = angular.module("uploadApp", []);
+        app.controller("myCtrl", function ($scope, fileUpload) {
+            $scope.ViewModel = {};
+            $scope.ViewModel.myFile = [];
+            $scope.ViewModel.Person = {};
+            $scope.ViewModel.Person.Name = "SquadWuschel";
+            $scope.ViewModel.Person.Email = "SquadWuschel@@Test.de";
+            $scope.uploadFile = function () {
+                fileUpload.uploadFileToUrl($scope.ViewModel.myFile, $scope.ViewModel.Person, "Upload");
+            }
+        });
+
+        app.directive('fileModel', [
+            '$parse', function ($parse) {
+                return {
+                    restrict: 'A',
+                    link: function (scope, element, attrs) {
+                        var model = $parse(attrs.fileModel);
+                        var modelSetter = model.assign;
+                        element.bind('change', function () {
+                            scope.$apply(function () {
+                                modelSetter(scope, element[0].files[0]);
+                            });
+                        });
+                    }
+                };
+            }
+        ]);
+
+        app.service('fileUpload', [
+            '$http', '$log', function ($http, $log) {
+                this.uploadFileToUrl = function (file, personData, uploadUrl) {
+                    var formData = new FormData();
+                    //Unsere Datei hinzufügen
+                    formData.append('file', file);
+                    //Unsere Personendaten ebenfalls den Formdaten hinzufügen.
+                    formData.append('person', angular.toJson(personData)); 
+                    $http.post(uploadUrl, formData, {
+                        transformRequest: angular.identity,
+                        headers: { 'Content-Type': undefined }
+                    })
+                        .success(function (data) {
+                            $log.log("Upload war erfolgreich");
+                        }).error(function () {
+                            $log.log("Fehler beim Upload der Daten");
+                        });
+                };
+            }
+        ]);
+    </script>
+}

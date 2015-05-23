@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "Benutzerdefinierte Filter z.B. Truncate";
+}
+
+<div ng-app="app.filter" ng-controller="filterCtrl">
+    <div class=" row">
+        <div class="col-md-12">
+            <h2>Benutzerdefinierte Filter z.B. Truncate</h2>
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            Truncated Text: {{ModelData.TruncateText | truncate:15:'=>'}}<br />
+            Truncated Text: {{ModelData.TruncateText | truncate}}<br />
+            Formated Number: {{ModelData.Age | numberFormat}}
+        </div>
+    </div>
+</div>
+
+
+
+
+@section scripts
+{
+    <script>
+        var app = angular.module("app.filter", []);
+        app.controller("filterCtrl", function($scope) {
+            $scope.ModelData = {
+                TruncateText: "Hallo ich bins Johannes",
+                Age: 32
+            }
+        });
+
+        app.filter("truncate", function () {
+            return function (text, length, end) {
+                if (isNaN(length)) { length = 10; }
+                if (end === undefined) { end = "..."; }
+                if (text.length <= length || text.length - end.length <= length) {
+                    return text;
+                } else {
+                    return String(text).substring(0, length - end.length) + end;
+                }
+            }
+        });
+
+        app.filter("numberFormat", function () {
+            return function (text) {
+                return "=>[" + text + "]";
+            }
+        });
+    </script>
+}

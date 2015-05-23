@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Ng-Pattern";
+    Layout = null;
+}
+
+<div ng-controller="ngPatternCtrl as ctrl">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>NgPattern Beispiele</h2>
+        </div>
+    </div>
+
+    <form name="frm">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label >CamleCase String</label>
+                    <input type="text" class="form-control" required name="camelCase" ng-model="ctrl.ViewModel.CamelCaseName" ng-pattern="/^((^[A-Z][a-z0-9]+)([A-Z][a-z0-9]+)*)$/" placeholder="Enter CamelCase String">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <pre>
+ {{ frm.camelCase | json }}
+</pre>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>CamleCase String</label>
+                    <input type="text" class="form-control" required name="camelCaseVar" ng-model="ctrl.ViewModel.CamelCaseName" ng-pattern="ctrl.ViewModel.CamelCasePattern" placeholder="Enter CamelCase String">
+                </div>
+            </div>
+            <div class="col-md-6">
+<pre>
+ {{ frm.camelCaseVar | json }}
+</pre>
+            </div>
+        </div>
+
+    </form>
+</div>

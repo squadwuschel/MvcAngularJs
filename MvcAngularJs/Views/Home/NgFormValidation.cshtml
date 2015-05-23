@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "NgFormValidation";
+}
+
+
+<div ng-app="app" ng-controller="formCtrl">
+    <form name="frm">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Firma</label>
+                    <input type="text" class="form-control" id="firma" placeholder="Firma" ng-model="Firma">
+                </div>
+                <div ng-repeat="item in name.persons">
+                    <div ng-form name="mainFrm">
+                        <div class="form-group" ng-class="{'has-error': mainFrm.lastNm.$invalid}">
+                            <label>Nachname</label>
+                            <input type="text" class="form-control" name="lastNm" placeholder="Nachname" ng-model="item.lastName" required>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': mainFrm.firstNm.$invalid}">
+                            <label>Vorname</label>
+                            <input type="text" class="form-control" name="firstNm" placeholder="Vorname" ng-model="item.firstName" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+@section scripts
+{
+    <script>
+        //http://blog.brunoscopelliti.com/the-ngform-directive-of-angularjs
+        var app = angular.module("app", []);
+        app.controller("formCtrl", function ($log, $scope) {
+            $scope.Firma = "MyCompany GmbH";
+            $scope.name = {
+                "persons": [
+                    { "firstName": "John", "lastName": "" },
+                    { "firstName": "Anna", "lastName": "" },
+                    { "firstName": "Peter", "lastName": "" }
+                ]
+            };
+        });
+    </script>
+
+}

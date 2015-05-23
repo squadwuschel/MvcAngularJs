@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Template Direktive";
+}
+
+<div ng-app="app.directive" ng-controller="directiveCtrl">
+    <div class=" row">
+        <div class="col-md-12">
+            <h2>Template Direktive</h2>
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <hallo-welt>
+                <p>
+                    Hier kommt noch etwas Text direkt in der Diretive,<br />
+                    welcher dann FETT dargestellt wird!
+                </p>
+            </hallo-welt>
+        </div>
+    </div>
+</div>
+
+
+@section scripts
+{
+    <script>
+        angular.module("app.directive", [])
+            .controller("directiveCtrl", function ($scope) {
+                $scope.person = {
+                    name: "Hamster",
+                    vorname: "Max"
+                };
+
+            })
+            .directive("halloWelt", function () {
+                return {
+                    restrict: 'E',
+                    replace: 'true', //halloWelt element komplett ersetzen
+                    transclude: true,
+                    template: "<div><label>Hallo {{person.name}}, {{person.vorname}} Welt</label> " +
+                              "<input type='text' ng-model='person.name' class='form-control'/><strong ng-transclude>" +
+                              "</strong> </div>"
+                    //templateUrl: ...
+                }
+            });
+    </script>
+}
+

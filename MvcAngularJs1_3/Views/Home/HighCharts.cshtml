@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "HighCharts";
+    Layout = null;
+}
+
+<div ng-controller="HighChartsCtrl as ctrl">
+    <div class="row">
+        <div class="col-md-12">
+            <h3><strong>Highcharts mit AngularJS und .NET MVC</strong></h3>
+        </div>
+        <div class="col-md-12">
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div sq-chart chart-data="ctrl.ViewModel.Temperature"></div>
+        </div>
+        <div class="col-md-6">
+            <div sq-chart chart-data="ctrl.ViewModel.Illness"></div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-2">
+            <input type="text" class="form-control" ng-model="ctrl.ViewModel.Age" />
+        </div>
+        <div class="col-md-2">
+            <input type="text" class="form-control" ng-model="ctrl.ViewModel.IllnessDays" />
+        </div>
+        <div class="col-md-1">
+            <a href="" class="btn btn-default btn-block" ng-click="ctrl.AddIllness('Bert')">Bert</a>
+        </div>
+        <div class="col-md-1">
+            <a href="" class="btn btn-default btn-block" ng-click="ctrl.AddIllness('Gert')">Gert</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-6">
+            @*<pre>{{ctrl.ViewModel.Illness | json}}</pre>*@
+        </div>
+
+    </div>
+</div>

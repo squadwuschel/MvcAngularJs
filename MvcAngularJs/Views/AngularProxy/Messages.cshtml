@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Angular Messages";
+}
+
+<div ng-app="app.MessageView" ng-controller="messageCtrl">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>@ViewBag.Title</h2>
+        </div>
+    </div>
+
+    <div message-window></div>
+    <div loading-spinner spinner="spinner"></div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <hr />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <button class="btn btn-default" ng-click="GetInfoMessage()">InfoMeldungen hinzufügen</button>
+        </div>
+        <div class="col-md-4">
+            <button class="btn btn-default" ng-click="GetWarningMessage()">Warnmeldungen hinzufügen</button>
+        </div>
+        <div class="col-md-4">
+            <button class="btn btn-default" ng-click="GetSuccessMessage()">Successmeldungen hinzufügen</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <hr />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <button class="btn btn-default" ng-click="GetErrorMessage()">Fehlermeldungen hinzufügen</button>
+        </div>
+        <div class="col-md-4">
+            <button class="btn btn-default" ng-click="LoadJsonError()">Exception auslösen</button>
+        </div>
+        <div class="col-md-4">
+            <button class="btn btn-default">Alle Meldungen löschen</button>
+        </div>
+
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript" src="~/ScriptsAngular/ctrl/messageProxyCtrl.js"></script>
+    <script type="text/javascript" src="~/ScriptsAngular/srv/AngularProxyPSrv.js"></script>
+    <script type="text/javascript" src="~/ScriptsAngular/modules/messages.js"></script>
+    <script type="text/javascript" src="~/ScriptsAngular/modules/messagesDirective.js"></script>
+    <script type="text/javascript" src="~/ScriptsAngular/modules/loadingSpinnerDirective.js"></script>
+    <script type="text/javascript" src="~/ScriptsAngular/view/AngularProxy/initMessageView.js"></script>
+}
+
+
+
+

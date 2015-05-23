@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Personenliste";
+}
+
+<div ng-app="app.person" ng-init="toggleAlarm=true">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>@ViewBag.Title</h2>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-success" ng-if="toggleAlarm">Das ist ein Erfolg</div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="btn btn-default" ng-click="toggleAlarm = !toggleAlarm">Den Alarm Toggeln</div>
+            <div class="btn btn-default" id="slideDown">Slide Down</div>
+            <div class="btn btn-default" id="slideUp">Slide Up</div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12" id="slide">
+            <h3>Das ist eine Überschrift</h3>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat lobortis augue vel ultrices. Proin cursus pellentesque eleifend. Fusce adipiscing, eros sed varius pharetra, lectus justo tristique metus, ac posuere neque sem congue felis. Duis aliquet velit rhoncus porta ullamcorper. Quisque quis sapien nibh. Cras ut dui molestie, scelerisque justo at, molestie leo. Sed sit amet nisl sapien. Proin vestibulum tellus nulla, nec dictum elit mollis tristique. Nullam pellentesque sapien et massa tincidunt, nec euismod eros aliquet. Duis eu elit vestibulum, elementum tellus consequat, consectetur ante. Proin eget rutrum eros, ac tempor lacus.
+                <br />
+                Cras ornare orci in neque imperdiet vehicula. Phasellus eget eleifend orci. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer vitae tristique diam. Nulla sed laoreet augue. Aliquam a orci at purus molestie varius at vitae diam. Etiam vitae pellentesque sapien. Cras vulputate ut magna vel pulvinar. Nam dictum, purus id venenatis consectetur, nisl dolor interdum magna, eu feugiat nulla tellus at libero. Nullam eget neque et nisl dapibus placerat vel sed ligula. Phasellus ac faucibus mauris. Vestibulum purus turpis, vestibulum vitae feugiat nec, semper vitae purus. Nulla eleifend arcu a purus mattis viverra.
+            </p>
+        </div>
+    </div>
+</div>
+
+
+@section scripts
+{
+    <script>
+        angular.module("app.person", ["ngAnimate"]);
+
+        $("#slideDown").on('click', function(event) {
+            $("#slide").slideDown();
+        });
+
+
+        $("#slideUp").on('click', function (event) {
+            $("#slide").slideUp();
+        });
+
+    </script>
+
+
+    @*<script type="text/javascript" src="~/ScriptsApp/views/Home/app.index.js"></script>
+        <script type="text/javascript" src="~/ScriptsApp/views/Home/indexCtrl.js"></script>
+        <script type="text/javascript" src="~/ScriptsApp/services/homePSrv.js"></script>*@
+}

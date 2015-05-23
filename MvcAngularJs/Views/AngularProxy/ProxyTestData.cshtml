@@ -1,0 +1,128 @@
+﻿@{
+    ViewBag.Title = "Proxy Testdaten";
+}
+
+<div ng-app="app.ProxyTestDataView" ng-controller="testDataProxyCtrl">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>@ViewBag.Title</h2>
+        </div>
+    </div>
+
+    <div message-window></div>
+    <div loading-spinner spinner="spinner"></div>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="well well-sm">
+                <h3>TestDatenOne Call 1</h3>
+                <p>Alle Eigenschaften des Json Objektes ausgeben</p>
+                <p>
+                    <ul ng-repeat="(key, value) in TestDataOne_1">
+                        <li>{{key}} : {{value}}</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="well well-sm">
+                <h3>TestDatenOne Call 2</h3>
+                <p>Alle Eigenschaften des Json Objektes ausgeben</p>
+                <p>
+                    <ul ng-repeat="(key, value) in TestDataOne_2">
+                        <li>{{key}} : {{value}}</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="well well-sm">
+                <h3>TestDatenTwo Call 1</h3>
+                <p>
+                    <ul ng-repeat="(key, value) in TestDataTwo_1">
+                        <li>{{key}} : {{value}}</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="well well-sm">
+                <h3>TestDaten Hersteller Call 1</h3>
+                <p>
+                    <ul ng-repeat="(key, value) in TestDataObjectOne_1">
+                        <li>{{key}} : {{value}}</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="well well-sm">
+                <h3>TestDaten Hersteller Call 2</h3>
+                <p>
+                    <ul ng-repeat="(key, value) in TestDataObjectTwo_1">
+                        <li>{{key}} : {{value}}</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="well well-sm">
+                <h3>TestDaten Person Call 1</h3>
+                <p>
+                    <ul ng-repeat="(key, value) in TestDataObjectPerson_1">
+                        <li>{{key}} : {{value}}</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="well well-sm">
+                <h3>TestDaten Person Call 2</h3>
+                <p>
+                    <ul ng-repeat="(key, value) in TestDataObjectPerson_2">
+                        <li>{{key}} : {{value}}</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="well well-sm">
+                <h3>TestDaten Person Call 3</h3>
+                <p>
+                    <ul ng-repeat="(key, value) in TestDataObjectPerson_3">
+                        <li>{{key}} : {{value}}</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="well well-sm">
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript" src="~/ScriptsAngular/ctrl/testDataProxyCtrl.js"></script>
+    <script type="text/javascript" src="~/ScriptsAngular/srv/AngularProxyPSrv.js"></script>
+    <script type="text/javascript" src="~/ScriptsAngular/modules/messages.js"></script>
+    <script type="text/javascript" src="~/ScriptsAngular/modules/messagesDirective.js"></script>
+    <script type="text/javascript" src="~/ScriptsAngular/modules/loadingSpinnerDirective.js"></script>
+    <script type="text/javascript" src="~/ScriptsAngular/view/AngularProxy/initProxyTestDataView.js"></script>
+}
+

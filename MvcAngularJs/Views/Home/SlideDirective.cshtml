@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "Slide Direktive";
+}
+
+<div ng-app="app.slide" ng-controller="slideCtrl">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>@ViewBag.Title</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Slide Panel</h3>
+                    <a href="" class="btn btn-default" ng-click="toggleSlider()">Slider</a>
+                </div>
+                <div class="panel-body" slider="isOpen">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at purus leo. Maecenas condimentum mauris at magna malesuada vestibulum. Vestibulum ut justo sed ipsum commodo rhoncus. Nulla in urna quis enim pulvinar vestibulum nec at lectus. Proin adipiscing a enim ornare mattis. Morbi sagittis tellus sit amet dolor aliquam commodo. Nulla non nisl lacus. Proin nec urna sodales, imperdiet purus eget, commodo est.
+                    <br />
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam placerat consequat erat, id rhoncus sem iaculis at. Nunc non lorem vitae urna vulputate lobortis. Vivamus imperdiet, sapien eu aliquam gravida, risus velit egestas lacus, ut rutrum urna enim nec urna. Cras non augue volutpat, pharetra justo ac, lobortis ligula. Nulla in tincidunt leo, quis condimentum erat. Suspendisse ut aliquet velit. Etiam nec sodales ligula. Duis accumsan eleifend pharetra. In fringilla congue sapien, eget semper erat dignissim et. Vestibulum fringilla lacinia fringilla. Fusce lorem tellus, sodales id mi id, tincidunt commodo felis. Cras facilisis dapibus quam vel consequat. Ut sit amet convallis risus, nec suscipit purus.
+                    <br />
+                    Etiam nec iaculis mi. Maecenas id ipsum purus. Quisque neque sapien, facilisis vitae ultrices id, ultricies in enim. In semper lobortis erat, ac fringilla nisl euismod quis. Nunc vitae ultricies lacus. Morbi pellentesque tortor dolor, a fringilla ipsum varius eu. Praesent justo nunc, rutrum vel metus placerat, ultrices luctus justo. Integer nec purus tincidunt, consectetur nulla id, interdum arcu. Phasellus non nulla metus. Aliquam suscipit scelerisque dignissim. Etiam quis mauris mi. Curabitur libero tellus, sodales ac quam a, venenatis suscipit metus. Nunc vitae magna sit amet felis sodales egestas quis a dolor.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts
+{
+    <script>
+        //http://www.bennadel.com/blog/2440-creating-a-custom-show-hide-directive-in-angularjs.htm
+        angular.module("app.slide", [])
+            .controller("slideCtrl", function ($log, $scope) {
+                $scope.toggleSlider = function () {
+                    $scope.isOpen = !$scope.isOpen;
+                }
+                $scope.isOpen = true;
+            })
+            /**
+            * Elemente up bzw. down Sliden für beliebige HTML Elemente, z.B. div
+            *
+            * html ...
+            * <div ... slider="isOpen"> ... </div>
+            * html ...
+            */
+            .directive("slider", function () {
+                return {
+                    restrict: 'A',
+                    link: function link($scope, element, attributes) {
+                        var expression = attributes.slider,
+                            duration = (attributes.slideShowDuration || "slow");
+                        //die Variable die prüft ob der Slider offen oder zu ist
+                        //hier "überwachen" und dann entsprechend die Slider Funktionen aufrufen
+                        $scope.$watch(expression, function (newValue) {
+                            if (newValue) {
+                                element.stop(true, true).slideDown(duration);
+                            } else {
+                                element.stop(true, true).slideUp(duration);
+                            }
+                        });
+                    }
+                }
+            });
+    </script>
+
+}

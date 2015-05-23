@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Xeditable";
+}
+
+<div ng-app="app.XeditableView" ng-controller="xeditableCtrl">
+
+    <div class="row">
+        <div class="col-md-5">
+            <h2>AngularJs Xeditable Beispiele</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <a href="#" editable-text="name">{{ name || "empty" }}</a>
+            <br/>
+            <a href="#" editable-text="age">{{ age || "empty" }}</a>
+        </div>
+        <div class="col-md-12">
+        </div>
+    </div>
+
+</div>
+
+@section scripts
+{
+    <script type="text/javascript" src="~/Scripts/xeditable.js"></script>
+    <script type="text/javascript" src="~/ScriptsAngular/ctrl/xeditableCtrl.js"></script>
+    <script type="text/javascript" src="~/ScriptsAngular/directives/validationDirectives.js"></script>
+    <script type="text/javascript" src="~/ScriptsAngular/directives/numberDirectives.js"></script>
+    <script type="text/javascript" src="~/ScriptsAngular/directives/datetimeDirectives.js"></script>
+    <script type="text/javascript" src="~/ScriptsAngular/view/Home/initXeditableView.js"></script>
+}
+

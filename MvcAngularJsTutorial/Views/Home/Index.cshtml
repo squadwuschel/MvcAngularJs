@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>AngularJS mit ASP.NET</h1>
+    <p class="lead">Ein paar Einführungsbeispiele für den Umagang mit AngularJS</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h3>"Hello World" mit AngularJs</h3>
+        <p>Einfache AngularJS Beispiele für die man keine extra JavaScript Dateien benötigt.</p>
+        <p><a class="btn btn-primary" href="@Url.Action("_0301_AngularJsOhneJavaScript", "Examples")">Hello World</a></p>
+    </div>
+    <div class="col-md-4">
+        <h3>Controller</h3>
+        <p>Was ist ein Controller und wie wird dieser verwendet?</p>
+        <p><a class="btn btn-primary" href="@Url.Action("_0401_PersonControllerWithFunction", "Examples")">Personen Controller</a></p>
+        <p><a class="btn btn-primary" href="@Url.Action("_0402_VerschachteltePersonenController", "Examples")">Verschachtelte Personen Controller</a></p>
+    </div>
+    <div class="col-md-4">
+        <h3>Service/Factory</h3>
+        <p>Was ist ein Service/Factory und wie wird dieser verwendet?</p>
+        <p><a class="btn btn-primary" href="@Url.Action("_0501_Factory", "Examples")">Factory</a></p>
+        <p><a class="btn btn-primary" href="@Url.Action("_0502_ServicePersonenlisteAjax", "Examples")">Personenlisten Service (AJAX)</a></p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h3>Direktive</h3>
+        <p>Was ist eine Direktive und was kann man damit alles machen?</p>
+        <p><a class="btn btn-primary" href="@Url.Action("_0601_TemplateDirective", "Examples")">Template Direktive</a></p>
+    </div>
+    <div class="col-md-4">
+        <h3>Filter</h3>
+        <p>Was sind Filter?</p>
+        <p><a class="btn btn-primary" href="@Url.Action("_0701_TruncateFilter", "Examples")">Benutzerdefinierte Filter</a></p>
+    </div>
+    <div class="col-md-4">
+        <h3>Formvalidation</h3>
+        <p>Wie überprüft man in AngularJS ob die Eingaben "richtig" sind.</p>
+        <p><a class="btn btn-primary" href="@Url.Action("_0801_Formvalidation", "Examples")">Formvalidation</a></p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h3>Ausführliches Beispiel</h3>
+        <p>Personenliste mit zugehörigen Autos?</p>
+        <p><a class="btn btn-primary" href="@Url.Action("Person", "Account")">Personenliste</a></p>
+    </div>
+</div>

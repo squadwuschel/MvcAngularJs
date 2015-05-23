@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "AngularStrapModal";
+    Layout = null;
+}
+
+<div ng-controller="mainCtrl">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>AngularStrapModal</h2>
+        </div>
+        <div class="col-md-12">
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <button type="button" class="btn btn-lg btn-danger" data-animation="am-fade-and-slide-top" data-template="AngularStrapTestModal" bs-modal="modal">
+                Custom Modal
+                <br>
+                <small>(using data-template)</small>
+            </button>
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-lg btn-primary" data-placement="center" bs-modal="modal">
+                Click to toggle modal
+                <br>
+                <small>(using an object)</small>
+            </button>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+
+    
+
+    </script>
+
+
+}

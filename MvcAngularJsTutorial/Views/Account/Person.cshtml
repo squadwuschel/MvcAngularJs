@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "Person";
+}
+
+<div ng-app="app.person" ng-controller="personCtrl">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Personen</h2>
+            <hr />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Personenübersicht</h3>
+                </div>
+                <table class="table table-hover">
+                    <tbody>
+                        <tr ng-repeat-start="person in ViewData">
+                            <td ng-bind="'ID:' + person.PersonId"></td>
+                            <td ng-bind="person.Vorname"></td>
+                            <td ng-bind="person.Nachname"></td>
+                            <td ng-bind="person.Einkommen | currency:'EUR '"></td>
+                            <td ng-bind="person.Wohnort"></td>
+                            <td ng-bind="'Autos: ' + person.Autos.length"></td>
+                            <td>
+                                <a href="" class="btn btn-default btn-xs" ng-click="Fct.DeletePerson(person.PersonId)"><i class="fa fa-trash-o"></i></a>&nbsp;
+                                <a href="" class="btn btn-default btn-xs" ng-click="person.ShowAuto = !person.ShowAuto"><i class="fa" ng-class="{'fa-arrow-down': !person.ShowAuto, 'fa-arrow-up': person.ShowAuto}"></i></a>
+                                <a href="" class="btn btn-default btn-xs" ng-click="Fct.OpenAutoEdit(person)"><i class="fa" ng-class="{'fa-minus': person.ShowAutoAddEntry, 'fa-plus': !person.ShowAutoAddEntry}"></i></a>
+                            </td>
+                        </tr>
+                        <tr ng-if="person.ShowAuto" ng-repeat-end ng-repeat-start="auto in person.Autos">
+                            <td>&nbsp;</td>
+                            <td ng-bind="'AutoId:' + auto.AutoId"></td>
+                            <td ng-bind="auto.Kennzeichen"></td>
+                            <td ng-bind="auto.Marke"></td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td><a href="" class="btn btn-default btn-xs" ng-click="Fct.DeleteAuto(auto.AutoId)"><i class="fa fa-trash-o"></i></a></td>
+                        </tr>
+                        <tr ng-repeat-end ng-if="person.ShowAutoAddEntry">
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>
+                                <input type="text" ng-model="ModelData.Auto.Kennzeichen" placeholder="Kennzeichen eintragen" class="form-control" />
+                            </td>
+                            <td>
+                                <input type="text" ng-model="ModelData.Auto.Marke" placeholder="Marke eintragen" class="form-control" />
+                            </td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>
+                                <a class="btn btn-primary" href="" ng-click="Fct.AddAuto(person.PersonId)" ng-disabled="Fct.IsAddAutoDisabled()" title="Auto anlegen"><i class="fa fa-plus"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>
+                                <input type="text" ng-model="ModelData.Person.Vorname" placeholder="Vorname eintragen" class="form-control" />
+                            </td>
+                            <td>
+                                <input type="text" ng-model="ModelData.Person.Nachname" placeholder="Nachname eintragen" class="form-control" />
+                            </td>
+                            <td>
+                                <input type="text" is-number ng-model="ModelData.Person.Einkommen" placeholder="Einkommen eintragen" class="form-control" />
+                            </td>
+                            <td>
+                                <input type="text" ng-model="ModelData.Person.Wohnort" placeholder="Wohnort eintragen" class="form-control" />
+                            </td>
+                            <td>&nbsp;</td>
+                            <td>
+                                <a class="btn btn-primary" href="" ng-click="Fct.AddPerson()" ng-disabled="Fct.IsAddPersonDisabled()" title="Person anlegen"><i class="fa fa-plus"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts
+{
+    <script type="text/javascript" src="~/ScriptsApp/services/accountSrv.js"></script>
+    <script type="text/javascript" src="~/ScriptsApp/views/Account/app.person.js"></script>
+    <script type="text/javascript" src="~/ScriptsApp/views/Account/personCtrl.js"></script>
+    <script type="text/javascript" src="~/ScriptsApp/directives/number.directives.js"></script>
+}
+

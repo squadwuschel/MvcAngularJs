@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "ModelBinderOhneWatch";
+    Layout = null;
+}
+
+@* ng-strict-di prüft ob beim SChreiben des Codes auch alles Regeln eingehalten wurde damit der code noch funktioniert wenn er minified wird. *@
+<div ng-controller="ModelBinderOhneWatchCtrl" ng-strict-di>
+     <br/>
+     <br/>
+    <div class="row">
+        <div class="col-md-12">
+            <strong>Modelbinder mal Ohne Watch</strong>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            Mit Watch: <input type="text" class="form-control" ng-model="Name" />&nbsp;    {{Name}}
+        </div>
+    </div>
+    <div class="row">
+        <hr />
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <a href="" class="btn btn-default" ng-click="Vorname = 'NeuerName'">Click It</a><br />
+            Ohne Watch: <input type="text" class="form-control" ng-model="Vorname" />&nbsp;<span ng-bind="::Vorname"></span>
+        </div>
+    </div>
+    <div class="row">
+        <hr />
+        <h2>One Time Bindings in Listen (ng-repeat)</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="list-unstyled">
+                @*<li ng-repeat="person in ::persons">*@
+                <li ng-repeat="person in persons">
+                    <div class="row">
+                        <div class="col-md-6">Name: {{::person.Name}} (Not Watched) | Vorname: {{person.Vorname}} (Watched) </div>
+                        <div class="col-md-2"><input type="text" ng-model="person.Name" class="form-control" /></div>
+                        <div class="col-md-2"><input type="text" ng-model="person.Vorname" class="form-control" /></div>
+                    </div>
+                </li>
+            </ul>
+            <br />
+            <a href="" class="btn btn-default" ng-click="Fct.AddPerson()">Add Entry</a>
+
+            <div ng-if="::(anzeigen1 && anzeigen2)">
+                IF welches mit einem One Time Binding verbunden ist.
+                <a href="" class="btn btn-default" ng-click="Fct.HideDiv()">Hide</a>
+            </div>
+            <div ng-if="(anzeigen1 && anzeigen2)">
+                If Ohne One Time Binding
+                <a href="" class="btn btn-default" ng-click="Fct.HideDiv()">Hide</a>
+            </div>
+        </div>
+    </div>
+</div>

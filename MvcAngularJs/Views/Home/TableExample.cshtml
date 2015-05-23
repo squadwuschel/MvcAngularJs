@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "TableExample";
+}
+<div ng-app="app.TableExampleView" ng-controller="tableCtrl">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Angular Table Example</h2>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-4">
+            <input class="form-control col-md-4" type="text" placeholder="Filter hier eingeben" ng-model="autoFilter" />
+        </div>
+        <div class="col-md-12">
+            <hr />
+        </div>
+        <div class="col-md-12">
+            <table class="table">
+                <tbody>
+                    <tr ng-repeat-start="herst in Hersteller | filter:autoFilter">
+                        <td ng-hide="herst.AutoTypen.length === 0"> <button ng-click="removeAutosByHerstellerId(herst.Id)" class="btn btn-default">Remove Autos</button> </td>
+                        <td ng-hide="herst.AutoTypen.length > 0"> <button ng-click="loadAutosByHerstellerId(herst.Id)" class="btn btn-default">Load Autos</button> </td>
+                        <td ng-bind="herst.Hersteller"></td>
+                        <td ng-bind="herst.Land"></td>
+                        <td ng-bind="herst.AnzMitarbeiter"></td>
+                    </tr>
+                    <tr ng-repeat-end ng-repeat="auto in herst.AutoTypen | filter:autoFilter">
+                        <td ng-bind="auto.Name"></td>
+                        <td ng-bind="auto.LieferzeitInWochen"></td>
+                        <td ng-bind="auto.Price | currency : 'EUR '"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+@section scripts
+{
+    
+<script type="text/javascript" src="~/ScriptsAngular/ctrl/tableCtrl.js"></script>
+<script type="text/javascript" src="~/ScriptsAngular/srv/tableSrv.js"></script>
+<script type="text/javascript" src="~/ScriptsAngular/view/Home/initTableExampleView.js"></script>
+
+}

@@ -1,0 +1,98 @@
+﻿@{
+    ViewBag.Title = "UnitTests";
+    Layout = null;
+}
+
+<div ng-controller="unitTestsCtrl as ctrl">
+    <div class="row">
+        <div class="col-md-10">&nbsp;</div>
+        <div class="col-md-12"><hr /></div>
+    </div>
+    <div class="row">
+        <div class="col-md-10">Unit Tests</div>
+        <div class="col-md-2">
+            <a class="btn btn-default pull-right" ng-click="ctrl.ToggleAddPerson()">Add Person</a>
+        </div>
+        <div class="col-md-12"><hr/></div>
+    </div>
+    <div class="row" ng-if="!ctrl.ViewModel.ShowAddPerson">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Textfilter</label>
+                <input type="text" ng-model="ctrl.SearchModel.Name" class="form-control" id="vorname" placeholder="Enter Vorname">
+            </div> 
+            <a class="btn btn-default" ng-click="ctrl.Search()">Suchen</a>
+        </div>
+        <div class="col-md-12"><hr /></div>
+    </div>
+    <div class="row" ng-if="!ctrl.ViewModel.ShowAddPerson">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Personen</h3>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                Vorname
+                            </th>
+                            <th>
+                                Nachname
+                            </th>
+                            <th>
+                                Alter
+                            </th>
+                            <th>
+                                Lebt noch
+                            </th>
+                            <th>
+                                Optionen
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="row in ctrl.ResultModel.Entries">
+                            <td ng-bind="::row.FirstName"></td>
+                            <td ng-bind="::row.LastName"></td>
+                            <td ng-bind="::row.Age"></td>
+                            <td ng-bind="::row.IsAlive"></td>
+                            <td>
+                                --
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-if="ctrl.ViewModel.ShowAddPerson">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label >Vorname</label>
+                <input type="text" ng-model="ctrl.PersonEntry.FirstName" class="form-control" id="vorname" placeholder="Enter Vorname">
+            </div>
+            <div class="form-group">
+                <label >Nachname</label>
+                <input type="text" ng-model="ctrl.PersonEntry.LastName" class="form-control" id="nachname" placeholder="Enter Nachname">
+            </div>
+            <div class="form-group">
+                <label>Alter</label>
+                <input type="text" ng-model="ctrl.PersonEntry.Age" class="form-control" id="alter" placeholder="Enter Nachname">
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="ctrl.PersonEntry.IsAlive"> Lebt noch
+                </label>
+            </div>
+            <a class="btn btn-default" ng-click="ctrl.AddPerson()">Person anlegen</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">Testtemplate direktive</div>
+        <div class="col-md-12">
+            <div test-template></div>
+        </div>
+
+    </div>
+</div>

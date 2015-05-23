@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "RadioInputs";
+}
+
+<div ng-app="app.radio" ng-controller="radioCtrl">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <div ng-repeat="option in fruits">
+                    <input type="radio" id="option-{{$index}}" name="option" ng-model="Locals.selected" ng-value="option">
+                    <label for="option-{{$index}}"> {{option.name}} </label>
+                </div>
+            </div>
+            
+            <pre>
+{{ Locals.selected | json }}
+</pre>
+
+        </div>
+
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+
+        var app = angular.module("app.radio", []);
+
+        app.controller("radioCtrl", function ($scope) {
+            $scope.obj = { 'choice': null };
+            $scope.fruits = [{ 'name': 'apple' }, { 'name': 'peach' }, { 'name': 'pear' }, { 'name': 'melon' }];
+
+            $scope.Locals = {}
+            $scope.Locals.selected = {};
+
+        });
+
+
+    </script>
+    
+
+}

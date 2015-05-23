@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.Title = "Directives";
+}
+
+<div ng-app="app.DirectivesView" ng-controller="directivesCtrl">
+
+    <div class="row">
+        <div class="col-md-5" >
+            <h2>AngularJs Directive Beispiele</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <sq-fullname first="Hill" last="Side"></sq-fullname>
+            <sq-fullname first="Hell" last="Boy"></sq-fullname>
+        </div>
+    </div>
+    <div class="row">
+        <hr />
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            Prüfen ob es sich um eine Zahl handelt inkl. Dezimalzahl: <br />
+            <input type="text" ng-model="budget" class="form-control" is-number />
+        </div>
+    </div>
+
+    <div class="row">
+        <hr />
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            Prüfen ob es sich um eine Zahl handelt ohne Dezimalzeichen: <br />
+            <input type="text" ng-model="money" class="form-control" is-single-number />
+        </div>
+    </div>
+    <div class="row">
+        <hr />
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            Mit Transclude wird der Wert innerhalb des Tags im Template nach "ng-transclude" eingefügt: <br />
+            <sq-transclude-directive>
+                <h1>Hallo ich werden gleich</h1>
+                <h2>eingefügt im Template!</h2>
+            </sq-transclude-directive>
+        </div>
+    </div>
+
+    <div class="row" sq-motor>
+
+        <sq-car sq-radio></sq-car>
+
+    </div>
+</div>
+
+
+
+
+
+@section scripts
+{
+    <script type="text/javascript" src="~/ScriptsAngular/ctrl/directivesCtrl.js"></script>
+    <script type="text/javascript" src="~/ScriptsAngular/directives/testDirectives.js"></script>
+    <script type="text/javascript" src="~/ScriptsAngular/directives/testRequireDirectives.js"></script>
+    <script type="text/javascript" src="~/ScriptsAngular/directives/numberDirectives.js"></script>
+    <script type="text/javascript" src="~/ScriptsAngular/srv/demoDataSrv.js"></script>
+    <script type="text/javascript" src="~/ScriptsAngular/view/Home/initDirectivesView.js"></script>
+}
+
+
+
+
+

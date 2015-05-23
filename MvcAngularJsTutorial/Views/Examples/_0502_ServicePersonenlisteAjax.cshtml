@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "Laden einer Personenliste mit Ajax";
+}
+
+<div class=" row">
+    <div class="col-md-12">
+        <h2>@ViewBag.Title</h2>
+        <hr />
+    </div>
+</div>
+
+<div ng-app="app.personList">
+    <div class="row" ng-controller="personListCtrl as ctrl">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Idx</th>
+                        <th>Vorname</th>
+                        <th>Nachname</th>
+                        <th>Tel</th>
+                        <th>Gehalt</th>
+                        <th>Bonus</th>
+                        <th>Geburtstag</th>
+                        <th>EMail</th>
+                        <th>Ist Member</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="row in ctrl.ModelData">
+                        <td ng-bind="row.id"></td>
+                        <td ng-bind="row.fname | uppercase"></td>
+                        <td ng-bind="row.lname | lowercase"></td>
+                        <td ng-bind="row.tel"></td>
+                        <td ng-bind="row.gehalt | currency"></td>
+                        <td ng-bind="row.bonus | currency : 'EUR '"></td>
+                        <td ng-bind="row.birthdate | date"></td>
+                        <td ng-bind="row.mail"></td>
+                        <td ng-bind="row.isMember"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        var app = angular.module("app.personList", []);
+
+        app.service("personListSrv", function ($http) {
+            var config = {
+                params: {
+                    'rows': 50,
+                    'id': '{index}',
+                    'fname': '{firstName}',
+                    'lname': '{lastName}',
+                    'tel': '{phone|format}',
+                    'gehalt': '{randomNumberLength}',
+                    'bonus': '{randomNumberLength|3}',
+                    'birthdate': '{date}',
+                    'mail': '{email}',
+                    'isMember': '{bool}',
+                    'callback': "JSON_CALLBACK"
+                }
+            }
+
+            this.fillData = function () {
+                return $http.jsonp("http://www.filltext.com", config, {}).then(function (result) {
+                    //Success
+                    return result.data;
+                },
+                    function (errorResult) {
+                        //Error
+                        return "error";
+                    });
+            }
+        });
+
+        app.controller("personListCtrl", function ($scope, $log, personListSrv) {
+            var that = this;
+            that.ModelData = {};
+
+            personListSrv.fillData().then(function (data) {
+                that.ModelData = data;
+            });
+
+        });
+    </script>
+}

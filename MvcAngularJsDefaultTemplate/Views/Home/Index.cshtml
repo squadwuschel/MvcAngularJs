@@ -1,0 +1,35 @@
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div ng-app="app.index" ng-controller="indexCtrl">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Scope Person anzeigen</h2>
+            <p>Vorname: {{ person.firstname }} | Nachname: {{ person.lastname }}</p>
+            <p ng-bind="'Alter: ' + person.age"></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Personen per Ajax abrufen: <button type="button" class="btn btn-default" ng-click="loadData()" >Daten laden</button> </h2>
+            <br/>
+            <input type="text" class="form-control" ng-model="listenFilter" placeholder="Bitte Filter hier eingeben" />
+            <br/>
+            <br/>
+            <ul ng-repeat="pers in personList | filter:listenFilter">
+                <li> {{pers.Firstname | lowercase}}, {{pers.Lastname | uppercase}} -> Alter: {{pers.Age}} und Preis: {{pers.Price | currency}} </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+@section scripts
+{
+    <script type="text/javascript" src="~/ScriptsApp/views/Home/app.index.js"></script>
+    <script type="text/javascript" src="~/ScriptsApp/views/Home/indexCtrl.js"></script>
+    <script type="text/javascript" src="~/ScriptsApp/services/homePSrv.js"></script>
+}
+

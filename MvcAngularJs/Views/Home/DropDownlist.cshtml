@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "AngularJs Dropdownlisten Beispiel";
+}
+
+<div ng-app="app.DropDownlistView" ng-controller="dropDownlistCtrl">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>AngularJs Dropdownlisten Beispiel</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <select class="form-control" ng-model="selectedIndex" ng-options="item as item.Text for item in Levels">
+                <option value="" ng-hide="selectedIndex !== -1">Bitte wählen</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <hr />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="btn btn-default" ng-click="LoadListData()">Load Data</div>
+        </div>
+        <div class="col-md-3 col-lg-offset-6">
+            <div class="btn btn-default" ng-click="ResetListData()">Reset Data</div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12">
+            <hr />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <label ng-bind="ValueChanger()"></label>
+        </div>
+        <div class="col-md-12">
+            <p>Selected Index: {{selectedIndex}}</p>
+        </div>
+    </div>
+</div>
+
+
+@section scripts
+{
+    <script type="text/javascript" src="~/ScriptsAngular/ctrl/dropDownlistCtrl.js"></script>
+    <script type="text/javascript" src="~/ScriptsAngular/srv/dropDownlistSrv.js"></script>
+    <script type="text/javascript" src="~/ScriptsAngular/view/Home/initDropDownlistView.js"></script>
+}

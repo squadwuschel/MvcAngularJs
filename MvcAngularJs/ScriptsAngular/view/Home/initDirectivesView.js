@@ -1,0 +1,1 @@
+﻿angular.module("app.DirectivesView", ["app.directivesCtrl", "app.testDirectives", "app.numberDirectives", "testRequireDirectives"]);

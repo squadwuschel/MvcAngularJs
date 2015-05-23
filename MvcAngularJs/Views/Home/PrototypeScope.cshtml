@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "PrototypeScope";
+}
+
+
+<div ng-app="app.prototype" ng-controller="myprotypeScopeCtrl as myCtrl">
+    <div class="row">
+        <div class="col-md-2">
+            {{myCtrl.name}}
+        </div>
+        <div class=" col-md-2">
+            <a ng-click="myCtrl.showAlert('Fehlermeldung ANZEIGEN!')" href="" class="btn btn-primary">Alert!</a>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        //Quelle: http://www.technofattie.com/2014/03/21/five-guidelines-for-avoiding-scope-soup-in-angular.html
+
+        //Controller in Extra Funktion "auslagern" um Protorype Funktionen anlegen zu können.
+        function protypeScopeCtrl($log) {
+            var _this = this;
+            this.name = "MyName";
+
+            //Im Controller nur die Funktionsaufrufe definieren
+            this.showAlert = function(message) {
+                _this._showAlert(message);
+            }
+        }
+
+        //In den Prototype Funktionen die Logik ausprogrammieren.
+        protypeScopeCtrl.prototype._showAlert = function (message) {
+            alert(message);
+        }
+
+        //Angular Definitionen bereitstellen
+        var app = angular.module("app.prototype", []);
+        app.controller("myprotypeScopeCtrl", protypeScopeCtrl);
+    </script>
+
+}

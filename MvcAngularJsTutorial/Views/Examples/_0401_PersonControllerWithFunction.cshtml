@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Personen Controller";
+}
+
+<div class=" row">
+    <div class="col-md-12">
+        <h2>Personen - Controller</h2>
+        <hr />
+    </div>
+</div>
+
+<div ng-app>
+    <div class="row" ng-controller="personCtrl">
+        <div class="col-md-12">
+            <h3>Person anzeigen mit Controller als einfache Funktion</h3>
+            <p>
+                <br />
+                Hallo {{ModelData.person.name}}, {{ModelData.person.vorname}}! 
+                <br />
+                Ich bin <strong ng-bind="ModelData.person.alter"></strong> Jahre alt.
+                <br />
+                <button type="button" ng-click="Fct.alertData()" class="btn btn-default">Daten anzeigen!</button>
+            </p>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        function personCtrl($log, $scope) {
+            $log.log("personCtrl initialized");
+
+            $scope.ModelData = {};
+            $scope.ModelData.person = {
+                name: "Thomas",
+                vorname: "Müller",
+                alter: 21
+            };
+
+            $scope.Fct = {};
+            $scope.Fct.alertData = function () {
+                alert('Name: ' + $scope.ModelData.person.vorname + ', ' + $scope.ModelData.person.name);
+            }
+        }
+    </script>
+}
